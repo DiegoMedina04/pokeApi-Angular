@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginDto } from '../../../core/Dto/loginDto';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,24 +16,12 @@ export class LoginComponent {
     password: ''
   };
 
-  constructor(private router:Router ) { }
+  constructor(private authService: AuthService) { }
   ngOnInit(): void {
-
   }
 
   onSubmit() {
-    const usuario = localStorage.getItem("username")
-    const password = localStorage.getItem("password")
-    console.log(this.userLogin);
-    console.log(usuario);
-    console.log(password);
-    if (this.userLogin.username === usuario && this.userLogin.password === password) {
-      localStorage.setItem("isLogged", "true");
-      this.router.navigate(['/pokedex']);
-      return ;
-    } else {
-      alert("Usuario no valido");
-    }
+    this.authService.login(this.userLogin.username, this.userLogin.password);
   }
 
 }
