@@ -6,7 +6,7 @@ import { PokedexComponent } from './features/pokedex/pokedex.component';
 export const routes: Routes = [
     {
         path: '',
-        component: PokedexComponent
+        component: LoginComponent
     },
     {
         path: 'auth',
